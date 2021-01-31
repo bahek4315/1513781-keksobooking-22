@@ -10,3 +10,5 @@ function generateNumber (min, max, n) {
   }
   return ((Math.random() * (max - min)) + min).toFixed(n);
 }
+
+generateNumber (1.1, 1.2, 5)
