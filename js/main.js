@@ -3,7 +3,7 @@
 import {TYPE_VALUES, CHECK_VALUES, FEATURE_VALUES, PHOTO_VALUES} from './data.js';
 import {generateIntegerNumber, generateNumber} from './util.js';
 
-function createFeatures () {
+const createFeatures = () => {
   let array = [];
   for (let i = 0; i < generateIntegerNumber(1, FEATURE_VALUES.length - 1); i++) {
     array[i] = FEATURE_VALUES[generateIntegerNumber(0, FEATURE_VALUES.length - 1)];
@@ -12,7 +12,7 @@ function createFeatures () {
   return filteredArray;
 }
 
-function createPhotos () {
+const createPhotos = () => {
   let array = [];
   for (let i = 0; i < generateIntegerNumber(1, 10); i++) {
     array[i] = PHOTO_VALUES[generateIntegerNumber(0, PHOTO_VALUES.length - 1)];
@@ -20,7 +20,7 @@ function createPhotos () {
   return array
 }
 
-function createOffer () {
+const createOffer = () => {
   let xValue = generateNumber(35.65000, 35.70000, 5);
   let yValue = generateNumber(139.70000, 139.80000, 5);
   return {
@@ -47,7 +47,7 @@ function createOffer () {
   }
 }
 
-function createTenOffers () {
+const createTenOffers = () => {
   let array = [];
   for (let i = 0; i < 10; i++) {
     array[i] = createOffer();

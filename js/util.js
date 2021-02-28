@@ -1,4 +1,4 @@
-function generateIntegerNumber (min, max) {
+const generateIntegerNumber = (min, max) => {
   if (min < 0) {
     alert('Min must be not less than 0');
   }
@@ -10,7 +10,7 @@ function generateIntegerNumber (min, max) {
   return Math.round((Math.random() * (max - min)) + min);
 }
 
-function generateNumber (min, max, digits) {
+const generateNumber = (min, max, digits) => {
   if (min < 0) {
     alert('Min must be not less than 0');
   }
