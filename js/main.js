@@ -2,6 +2,7 @@
 // https://learn.javascript.ru/number
 import {TYPE_VALUES, CHECK_VALUES, FEATURE_VALUES, PHOTO_VALUES} from './data.js';
 import {generateIntegerNumber, generateNumber} from './util.js';
+import{fillUnit} from './generation.js';
 
 const createFeatures = () => {
   let array = [];
@@ -32,12 +33,12 @@ const createOffer = () => {
       address: String(xValue) + ', '+ String(yValue),
       price: Math.round(Math.random() * 100000),
       type: TYPE_VALUES[generateIntegerNumber(0, TYPE_VALUES.length - 1)],
-      rooms: Math.round(Math.random() * 10),
-      guests: Math.round(Math.random() * 30),
+      rooms: 1 + Math.round(Math.random() * 9),
+      guests: 1 + Math.round(Math.random() * 29),
       checkin: CHECK_VALUES[generateIntegerNumber(0, CHECK_VALUES.length - 1)],
       checkout: CHECK_VALUES[generateIntegerNumber(0, CHECK_VALUES.length - 1)],
       features: createFeatures(),
-      describtion: 'Выберите мое предложение!',
+      description: 'Выберите мое предложение!',
       photos: createPhotos(),
     },
     location: {
@@ -55,4 +56,8 @@ const createTenOffers = () => {
   return array;
 }
 
-createTenOffers();
+let offer = createTenOffers()[0];
+
+let insertUnit = document.querySelector('#map-canvas');
+
+insertUnit.appendChild(fillUnit(offer));
