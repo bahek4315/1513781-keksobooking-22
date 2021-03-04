@@ -85,6 +85,8 @@ const fillUnit = (oneOffer) => {
     let newPhoto = document.createElement('img');
     newPhoto.classList.add('popup__photo');
     newPhoto.src = oneOffer.offer.photos[i];
+    newPhoto.width = 45;
+    newPhoto.height = 40;
     element.querySelector('.popup__photos').appendChild(newPhoto);
   }
   return element;
