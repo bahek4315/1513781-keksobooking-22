@@ -71,3 +71,11 @@ export const createOffer = () => {
     },
   }
 }
+
+export const createTenOffers = () => {
+  let array = [];
+  for (let i = 0; i < 10; i++) {
+    array[i] = createOffer();
+  }
+  return array;
+}
