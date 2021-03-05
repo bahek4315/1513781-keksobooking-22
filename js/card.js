@@ -42,42 +42,15 @@ const createCard = (oneOffer) => {
   //Delete all <li> in <ul> of features
 element.querySelector('.popup__features').innerHTML = '';
 
-  //create <li> if there is wifi
-  for (let i = oneOffer.offer.features.length; i >= 0; i--) {
-    if (oneOffer.offer.features[i] === 'wifi') {
-      element.querySelector('.popup__features').insertAdjacentHTML('beforeend', '<li class="popup__feature popup__feature--wifi"></li>');
-    }
-  }
-  //create <li> if there is dishwasher
-  for (let i = oneOffer.offer.features.length; i >= 0; i--) {
-    if (oneOffer.offer.features[i] === 'dishwasher') {
-      element.querySelector('.popup__features').insertAdjacentHTML('beforeend', '<li class="popup__feature popup__feature--dishwasher"></li>');
-    }
-  }
-  //create <li> if there is parking
-  for (let i = oneOffer.offer.features.length; i >= 0; i--) {
-    if (oneOffer.offer.features[i] === 'parking') {
-      element.querySelector('.popup__features').insertAdjacentHTML('beforeend', '<li class="popup__feature popup__feature--parking"></li>');
-    }
-  }
-  //create <li> if there is washer
-  for (let i = oneOffer.offer.features.length; i >= 0; i--) {
-    if (oneOffer.offer.features[i] === 'washer') {
-      element.querySelector('.popup__features').insertAdjacentHTML('beforeend', '<li class="popup__feature popup__feature--washer"></li>');
-    }
-  }
-  //create <li> if there is elevator
-  for (let i = oneOffer.offer.features.length; i >= 0; i--) {
-    if (oneOffer.offer.features[i] === 'elevator') {
-      element.querySelector('.popup__features').insertAdjacentHTML('beforeend', '<li class="popup__feature popup__feature--elevator"></li>');
-    }
-  }
-  //create <li> if there is conditioner
-  for (let i = oneOffer.offer.features.length; i >= 0; i--) {
-    if (oneOffer.offer.features[i] === 'conditioner') {
-      element.querySelector('.popup__features').insertAdjacentHTML('beforeend', '<li class="popup__feature popup__feature--conditioner"></li>');
-    }
-  }
+let features = oneOffer.offer.features;
+let insertFeatures =   element.querySelector('.popup__features');
+
+for (let i = 0; i < oneOffer.offer.features.length; i++) {
+  let oneFeature = document.createElement('li');
+  oneFeature.classList.add('popup__feature');
+  oneFeature.classList.add('popup__feature--' + features[i]);
+  insertFeatures.appendChild(oneFeature);
+}
 
   element.querySelector('.popup__photos').removeChild(element.querySelector('.popup__photos').querySelector('img'));
   for (let i = 0; i < oneOffer.offer.photos.length; i++) {
