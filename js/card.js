@@ -40,17 +40,17 @@ const createCard = (oneOffer) => {
   element.querySelector('.popup__avatar').src = oneOffer.author.avatar;
 
   //Delete all <li> in <ul> of features
-element.querySelector('.popup__features').innerHTML = '';
+  element.querySelector('.popup__features').innerHTML = '';
 
-let features = oneOffer.offer.features;
-let insertFeatures =   element.querySelector('.popup__features');
+  let features = oneOffer.offer.features;
+  let insertFeatures =   element.querySelector('.popup__features');
 
-for (let i = 0; i < oneOffer.offer.features.length; i++) {
-  let oneFeature = document.createElement('li');
-  oneFeature.classList.add('popup__feature');
-  oneFeature.classList.add('popup__feature--' + features[i]);
-  insertFeatures.appendChild(oneFeature);
-}
+  for (let i = 0; i < oneOffer.offer.features.length; i++) {
+    let oneFeature = document.createElement('li');
+    oneFeature.classList.add('popup__feature');
+    oneFeature.classList.add('popup__feature--' + features[i]);
+    insertFeatures.appendChild(oneFeature);
+  }
 
   element.querySelector('.popup__photos').removeChild(element.querySelector('.popup__photos').querySelector('img'));
   for (let i = 0; i < oneOffer.offer.photos.length; i++) {
