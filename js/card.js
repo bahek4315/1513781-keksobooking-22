@@ -1,4 +1,4 @@
-const fillUnit = (oneOffer) => {
+const createCard = (oneOffer) => {
   let template = document.querySelector('#card').content.querySelector('article');
   let element = template.cloneNode(true);
 

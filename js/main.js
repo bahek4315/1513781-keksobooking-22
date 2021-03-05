@@ -2,7 +2,7 @@
 // https://learn.javascript.ru/number
 import {TYPE_VALUES, CHECK_VALUES, FEATURE_VALUES, PHOTO_VALUES} from './data.js';
 import {generateIntegerNumber, generateNumber} from './util.js';
-import{fillUnit} from './generation.js';
+import{createCard} from './card.js';
 
 const createFeatures = () => {
   let array = [];
