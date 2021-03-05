@@ -60,4 +60,6 @@ let offer = createTenOffers()[0];
 
 let insertUnit = document.querySelector('#map-canvas');
 
-insertUnit.appendChild(fillUnit(offer));
+insertUnit.appendChild(createCard(offer));
+
+console.log(insertUnit);

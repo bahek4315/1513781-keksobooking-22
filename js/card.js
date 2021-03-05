@@ -40,9 +40,8 @@ const createCard = (oneOffer) => {
   element.querySelector('.popup__avatar').src = oneOffer.author.avatar;
 
   //Delete all <li> in <ul> of features
-  for (let i = element.querySelector('.popup__features').querySelectorAll('li').length - 1; i >= 0; i--) {
-    element.querySelector('.popup__features').removeChild(element.querySelector('.popup__features').querySelectorAll('li')[i])
-  }
+element.querySelector('.popup__features').innerHTML = '';
+
   //create <li> if there is wifi
   for (let i = oneOffer.offer.features.length; i >= 0; i--) {
     if (oneOffer.offer.features[i] === 'wifi') {
@@ -91,4 +90,4 @@ const createCard = (oneOffer) => {
   }
   return element;
 }
-export {fillUnit}
+export {createCard}
