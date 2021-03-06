@@ -1,5 +1,10 @@
 // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 // https://learn.javascript.ru/number
-import {createTenOffers} from './util.js';
+import {createTenOffers} from './data.js';
+import{createCard} from './card.js';
 
-createTenOffers();
+let offer = createTenOffers()[0];
+
+let insertUnit = document.querySelector('#map-canvas');
+
+insertUnit.appendChild(createCard(offer));
