@@ -6,7 +6,8 @@ const TYPE_VALUES = [
   'house',
   'bungalow',
 ];
- const CHECK_VALUES = [
+
+const CHECK_VALUES = [
   '12:00',
   '13:00',
   '14:00',

@@ -56,7 +56,6 @@ mainMarker.on('moveend', (evt) => {
 });
 
 let tenOffers = createTenOffers();
-console.log(tenOffers);
 
 const insertUnit = document.querySelector('#map-canvas');
 
@@ -71,13 +70,11 @@ let points = [];
 for (let i = 0; i < tenOffers.length; i++) {
   points[i] =
     {
-    title: articles[i],
-    lat: tenOffers[i].location.x,
-    lng: tenOffers[i].location.y,
-  }
-};
-
-console.log(points);
+      title: articles[i],
+      lat: tenOffers[i].location.x,
+      lng: tenOffers[i].location.y,
+    }
+}
 
 const markerIcon = L.icon({
   iconUrl: '../img/pin.svg',
@@ -86,7 +83,14 @@ const markerIcon = L.icon({
 });
 
 points.forEach(({lat, lng, title}) => {
-  const marker = L.marker({lat, lng,}, {icon: markerIcon,});
+  const marker = L.marker(
+    {
+      lat,
+      lng,
+    },
+    {
+      icon: markerIcon,
+    });
   marker.addTo(map);
   marker.bindPopup(title);
 });
