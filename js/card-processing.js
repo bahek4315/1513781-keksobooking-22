@@ -45,7 +45,6 @@ export const timeSync = () => {
 
 export const guestLimit = () => {
   const roomInput = document.querySelector('#room_number');
-  const roomOptions = roomInput.querySelectorAll('option');
   const guestsInput = document.querySelector('#capacity');
   const guestsOptions = guestsInput.querySelectorAll('option');
 

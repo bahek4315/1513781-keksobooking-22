@@ -1,4 +1,4 @@
-import {disableForm, enableForm} from './lock.js'
+import {enableForm} from './lock.js'
 import {createTenOffers} from './data.js';
 import {createCard} from './card.js';
 
