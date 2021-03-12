@@ -1,4 +1,4 @@
-const createCard = (oneOffer) => {
+export const createCard = (oneOffer) => {
   let template = document.querySelector('#card').content.querySelector('article');
   let element = template.cloneNode(true);
 
@@ -63,4 +63,3 @@ const createCard = (oneOffer) => {
   }
   return element;
 }
-export {createCard}

@@ -1,6 +1,11 @@
 export const setMinSum = () => {
-  let buildingType = document.querySelector('#type');
-  let priceInput = document.querySelector('#price');
+  const buildingType = document.querySelector('#type');
+  const priceInput = document.querySelector('#price');
+  const titleInput = document.querySelector('#title');
+
+  priceInput.max = 1000000;
+  titleInput.minLength = 30;
+  titleInput.maxLength = 100;
   //без этого не работает валидация, если ничего не выбирать в теге <select>, те оставить "квартира" по дефолту, решил сделать такой код
   if (buildingType.value === 'flat') {
     priceInput.min = 1000;
@@ -28,12 +33,141 @@ export const setMinSum = () => {
 }
 
 export const timeSync = () => {
-  let timeIn = document.querySelector('#timein');
-  let timeOut = document.querySelector('#timeout');
+  const timeIn = document.querySelector('#timein');
+  const timeOut = document.querySelector('#timeout');
   timeIn.addEventListener('change', function (){
     timeOut.value = timeIn.value;
   })
   timeOut.addEventListener('change', function (){
     timeIn.value = timeOut.value;
+  })
+}
+
+export const guestLimit = () => {
+  const roomInput = document.querySelector('#room_number');
+  const guestsInput = document.querySelector('#capacity');
+  const guestsOptions = guestsInput.querySelectorAll('option');
+
+  if (roomInput.value === '1') {
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '3') {
+        guestsOptions[i].disabled = true;
+      }
+    }
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '2') {
+        guestsOptions[i].disabled = true;
+      }
+    }
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '1') {
+        guestsOptions[i].disabled = false;
+      }
+    }
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '0') {
+        guestsOptions[i].disabled = true;
+      }
+    }
+    guestsInput.value = '1';
+  }
+
+  roomInput.addEventListener('change', function () {
+
+    if (roomInput.value === '1') {
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      guestsInput.value = '1';
+    }
+
+    if (roomInput.value === '2') {
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      guestsInput.value = '2';
+    }
+
+    if (roomInput.value === '3') {
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      guestsInput.value = '3';
+    }
+    
+    if (roomInput.value === '100') {
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      guestsInput.value = '0';
+    }
   })
 }
