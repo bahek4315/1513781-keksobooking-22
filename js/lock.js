@@ -1,4 +1,4 @@
-export const disablePage = () => {
+export const disableForm = () => {
   let mainForm = document.querySelector('.ad-form');
   let allMainFormFieldsets = mainForm.querySelectorAll('fieldset');
   let mapForm = document.querySelector('.map__filters');
@@ -18,7 +18,7 @@ export const disablePage = () => {
   }
 }
 
-export const enablePage = () => {
+export const enableForm = () => {
   let mainForm = document.querySelector('.ad-form');
   let allMainFormFieldsets = mainForm.querySelectorAll('fieldset');
   let mapForm = document.querySelector('.map__filters');
