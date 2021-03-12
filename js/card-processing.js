@@ -48,42 +48,125 @@ export const guestLimit = () => {
   const guestsInput = document.querySelector('#capacity');
   const guestsOptions = guestsInput.querySelectorAll('option');
 
-
   if (roomInput.value === '1') {
-    guestsOptions[0].disabled = true;
-    guestsOptions[1].disabled = true;
-    guestsOptions[2].disabled = false;
-    guestsOptions[3].disabled = true;
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '3') {
+        guestsOptions[i].disabled = true;
+      }
+    }
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '2') {
+        guestsOptions[i].disabled = true;
+      }
+    }
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '1') {
+        guestsOptions[i].disabled = false;
+      }
+    }
+    for (let i = 0; i < guestsOptions.length; i++) {
+      if (guestsOptions[i].value === '0') {
+        guestsOptions[i].disabled = true;
+      }
+    }
     guestsInput.value = '1';
   }
 
   roomInput.addEventListener('change', function () {
+
     if (roomInput.value === '1') {
-      guestsOptions[0].disabled = true;
-      guestsOptions[1].disabled = true;
-      guestsOptions[2].disabled = false;
-      guestsOptions[3].disabled = true;
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = true;
+        }
+      }
       guestsInput.value = '1';
     }
+
     if (roomInput.value === '2') {
-      guestsOptions[0].disabled = true;
-      guestsOptions[1].disabled = false;
-      guestsOptions[2].disabled = false;
-      guestsOptions[3].disabled = true;
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = true;
+        }
+      }
       guestsInput.value = '2';
     }
+
     if (roomInput.value === '3') {
-      guestsOptions[0].disabled = false;
-      guestsOptions[1].disabled = false;
-      guestsOptions[2].disabled = false;
-      guestsOptions[3].disabled = true;
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = false;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = true;
+        }
+      }
       guestsInput.value = '3';
     }
+    
     if (roomInput.value === '100') {
-      guestsOptions[0].disabled = true;
-      guestsOptions[1].disabled = true;
-      guestsOptions[2].disabled = true;
-      guestsOptions[3].disabled = false;
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '3') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '2') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '1') {
+          guestsOptions[i].disabled = true;
+        }
+      }
+      for (let i = 0; i < guestsOptions.length; i++) {
+        if (guestsOptions[i].value === '0') {
+          guestsOptions[i].disabled = false;
+        }
+      }
       guestsInput.value = '0';
     }
   })

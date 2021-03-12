@@ -1,8 +1,7 @@
 import {enableForm} from './lock.js'
-import {createTenOffers} from './data.js';
 import {createCard} from './card.js';
 
-export const createMap = () => {
+export const createMap = (tenOffers) => {
 
   /* global L:readonly */
 
@@ -16,7 +15,7 @@ export const createMap = () => {
     }, 13);
 
   const mainMarkerIcon = L.icon({
-    iconUrl: '/img/main-pin.svg',
+    iconUrl: 'img/main-pin.svg',
     iconSize: [50, 50],
     iconAnchor: [25, 50],
   });
@@ -49,8 +48,6 @@ export const createMap = () => {
     inputAddress.value = evt.target.getLatLng().lat.toFixed(5) + ', ' + evt.target.getLatLng().lng.toFixed(5);
   });
 
-  let tenOffers = createTenOffers();
-
   const insertUnit = document.querySelector('#map-canvas');
 
   for (let i = 0; i < tenOffers.length; i++) {
@@ -71,7 +68,7 @@ export const createMap = () => {
   }
 
   const markerIcon = L.icon({
-    iconUrl: '/img/pin.svg',
+    iconUrl: 'img/pin.svg',
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
