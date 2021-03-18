@@ -3,10 +3,12 @@
 import {setMinSum, timeSync, guestLimit} from './card-processing.js';
 import {disableForm} from './lock.js'
 import {createMap} from './map.js'
-import {createTenOffers} from './data.js'
+import {sendForm, receiveMarkers} from './server-communication.js'
 
 setMinSum();
 timeSync();
 guestLimit();
 disableForm();
-createMap(createTenOffers());
+createMap();
+receiveMarkers();
+sendForm();

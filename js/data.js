@@ -66,8 +66,8 @@ const createOffer = () => {
       photos: createPhotos(),
     },
     location: {
-      x: xValue,
-      y: yValue,
+      lat: xValue,
+      lng: yValue,
     },
   }
 }
