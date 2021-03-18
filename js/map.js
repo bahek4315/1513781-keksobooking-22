@@ -1,26 +1,45 @@
 import {enableForm} from './lock.js'
 import {createCard} from './card.js';
 
-export const createMap = (tenOffers) => {
+const inputAddress = document.querySelector('#address');
 
+const map = L.map('map-canvas');
+const mainMarkerIcon = L.icon({
+  iconUrl: 'img/main-pin.svg',
+  iconSize: [50, 50],
+  iconAnchor: [25, 50],
+});
+
+let mainMarker = L.marker(
+  {
+    lat: 35.681700,
+    lng: 139.753882,
+  },
+  {
+    draggable: true,
+    icon: mainMarkerIcon,
+  },
+);
+
+export const createMap = () => {
   /* global L:readonly */
 
-  const map = L.map('map-canvas')
-    .on('load', () => {
+    map.on('load', () => {
       enableForm();
     })
     .setView({
       lat: 35.681700,
       lng: 139.753882,
-    }, 13);
+    }, 8);
 
-  const mainMarkerIcon = L.icon({
-    iconUrl: 'img/main-pin.svg',
-    iconSize: [50, 50],
-    iconAnchor: [25, 50],
-  });
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    },
+  ).addTo(map);
 
-  const mainMarker = L.marker(
+  mainMarker = L.marker(
     {
       lat: 35.681700,
       lng: 139.753882,
@@ -30,23 +49,39 @@ export const createMap = (tenOffers) => {
       icon: mainMarkerIcon,
     },
   );
-
-  L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    },
-  ).addTo(map);
-
   mainMarker.addTo(map);
 
-  const inputAddress = document.querySelector('#address');
   inputAddress.value = mainMarker.getLatLng().lat.toFixed(5) + ', ' + mainMarker.getLatLng().lng.toFixed(5);
   inputAddress.readOnly = true;
 
   mainMarker.on('moveend', (evt) => {
     inputAddress.value = evt.target.getLatLng().lat.toFixed(5) + ', ' + evt.target.getLatLng().lng.toFixed(5);
   });
+
+}
+
+export const resetMainMarker = () => {
+  map.removeLayer(mainMarker);
+  mainMarker = L.marker(
+    {
+      lat: 35.681700,
+      lng: 139.753882,
+    },
+    {
+      draggable: true,
+      icon: mainMarkerIcon,
+    },
+  );
+  mainMarker.addTo(map);
+  inputAddress.value = mainMarker.getLatLng().lat.toFixed(5) + ', ' + mainMarker.getLatLng().lng.toFixed(5);
+  inputAddress.readOnly = true;
+
+  mainMarker.on('moveend', (evt) => {
+    inputAddress.value = evt.target.getLatLng().lat.toFixed(5) + ', ' + evt.target.getLatLng().lng.toFixed(5);
+  });
+}
+
+export const createPoints = (tenOffers) => {
 
   const insertUnit = document.querySelector('#map-canvas');
 
@@ -62,8 +97,8 @@ export const createMap = (tenOffers) => {
     points[i] =
       {
         title: articles[i],
-        lat: tenOffers[i].location.x,
-        lng: tenOffers[i].location.y,
+        lat: tenOffers[i].location.lat,
+        lng: tenOffers[i].location.lng,
       }
   }
 
