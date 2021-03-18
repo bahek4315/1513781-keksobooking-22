@@ -24,9 +24,9 @@ let mainMarker = L.marker(
 export const createMap = () => {
   /* global L:readonly */
 
-    map.on('load', () => {
-      enableForm();
-    })
+  map.on('load', () => {
+    enableForm();
+  })
     .setView({
       lat: 35.681700,
       lng: 139.753882,
