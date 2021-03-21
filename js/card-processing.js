@@ -83,8 +83,6 @@ export const setSendButton = () => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     sendForm(formData);
-    formReset();
-    resetMainMarker();
   })
 }
 

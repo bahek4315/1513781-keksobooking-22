@@ -1,3 +1,6 @@
+import {resetMainMarker} from './map.js';
+import {formReset} from './card-processing.js'
+
 export const createGetErrorMessage = (error) => {
   const alertContainer = document.createElement('div');
   alertContainer.textContent = error;
@@ -21,44 +24,60 @@ export const createPostSuccessMessage = () => {
   const mainPage = document.querySelector('main');
   const successTemplate = document.querySelector('#success').content.querySelector('.success');
   const successDiv = successTemplate.cloneNode(true);
-  mainPage.appendChild(successDiv);
-  document.addEventListener('click', () => {
+
+  const successClickListenerAdd = () => {
     if (mainPage.lastChild.className === 'success'){
       mainPage.removeChild(mainPage.querySelector('.success'));
     }
-  });
+    document.removeEventListener('click', successClickListenerAdd)
+  }
 
-  document.addEventListener('keydown', (evt) => {
+  const successEscListenerAdd = (evt) => {
     if (evt.keyCode === 27) {
       if (mainPage.lastChild.className === 'success'){
         mainPage.removeChild(mainPage.querySelector('.success'));
       }
     }
-  });
+    document.removeEventListener('click', successEscListenerAdd)
+  }
+
+  mainPage.appendChild(successDiv);
+  document.addEventListener('click', successClickListenerAdd);
+  document.addEventListener('keydown', successEscListenerAdd);
+  formReset();
+  resetMainMarker();
 }
 
 export const createPostErrorMessage = () => {
   const mainPage = document.querySelector('main');
   const errorTemplate = document.querySelector('#error').content.querySelector('.error');
   const errorDiv = errorTemplate.cloneNode(true);
+
+  const errorClickListenerAdd = () => {
+    if (mainPage.lastChild.className === 'error'){
+      mainPage.removeChild(mainPage.querySelector('.error'));
+    }
+    document.removeEventListener('click', errorClickListenerAdd)
+  }
+
+  const errorEscListenerAdd = (evt) => {
+    if (evt.keyCode === 27) {
+      if (mainPage.lastChild.className === 'error'){
+        mainPage.removeChild(mainPage.querySelector('.error'));
+      }
+    }
+    document.removeEventListener('click', errorEscListenerAdd)
+  }
+
   mainPage.appendChild(errorDiv);
+  document.addEventListener('click', errorClickListenerAdd);
+  document.addEventListener('keydown', errorEscListenerAdd);
+
+
   mainPage.querySelector('.error__button').addEventListener('click', (evt) => {
     evt.preventDefault();
     if (mainPage.lastChild.className === 'error'){
       mainPage.removeChild(mainPage.querySelector('.error'));
     }
   })
-  document.addEventListener('click', () => {
-    if (mainPage.lastChild.className === 'error'){
-      mainPage.removeChild(mainPage.querySelector('.error'));
-    }
-  });
-
-  document.addEventListener('keydown', (evt) => {
-    if (evt.keyCode === 27) {
-      if (mainPage.lastChild.className === 'error'){
-        mainPage.removeChild(mainPage.querySelector('.error'));
-      }
-    }
-  });
 }
