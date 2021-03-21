@@ -1,3 +1,6 @@
+import {resetMainMarker} from './map.js';
+import {sendForm} from './server-communication.js'
+
 export const setMinSum = () => {
   const buildingType = document.querySelector('#type');
   const priceInput = document.querySelector('#price');
@@ -56,5 +59,39 @@ export const guestLimit = () => {
       3: '<option value="3">для 3 гостей</option> <option value="2">для 2 гостей</option> <option value="1">для 1 гостя</option>',
     }
     guestsInput.innerHTML = roomCapacity[roomInput.value];
+  })
+}
+
+export const formReset = () => {
+  const sendingForm = document.querySelector('.ad-form')
+  const titleDescription = sendingForm.querySelector('#title');
+  const apartmentType = sendingForm.querySelector('#type');
+  const priceInput = sendingForm.querySelector('#price');
+  const roomNumber = sendingForm.querySelector('#room_number');
+  const guestsNumber = sendingForm.querySelector('#capacity');
+  sendingForm.reset();
+  titleDescription.value = '';
+  apartmentType.value = 'flat';
+  priceInput.placeholder = '1000';
+  roomNumber.value = '1';
+  guestsNumber.innerHTML = '<option value="1">для 1 гостя</option>';
+}
+
+export const setSendButton = () => {
+  const submitForm = document.querySelector('.ad-form');
+  submitForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    sendForm(formData);
+    formReset();
+    resetMainMarker();
+  })
+}
+
+export const setResetButton = () => {
+  document.querySelector('.ad-form__reset').addEventListener('click', (evt) => {
+    evt.preventDefault();
+    formReset();
+    resetMainMarker();
   })
 }
