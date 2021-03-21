@@ -16,7 +16,7 @@ export const receiveMarkers = () => {
     .catch((err) => {
       const alertContainer = document.createElement('div');
       alertContainer.textContent = err;
-      alertContainer.style.zIndex = 10;
+      alertContainer.style.zIndex = 100;
       alertContainer.style.position = 'absolute';
       alertContainer.style.left = 0;
       alertContainer.style.top = 0;
@@ -25,7 +25,7 @@ export const receiveMarkers = () => {
       alertContainer.style.fontSize = '30px';
       alertContainer.style.textAlign = 'center';
       alertContainer.style.backgroundColor = 'pink';
-      alertContainer.style.сolor = 'aqua';
+      alertContainer.style.color = 'aqua';
       document.body.append(alertContainer);
       setTimeout(() => {
         alertContainer.remove();
@@ -108,7 +108,7 @@ export const sendForm = () => {
     apartmentType.value = 'flat';
     priceInput.placeholder = '1000';
     roomNumber.value = '1';
-    guestsNumber.value = '1';
+    guestsNumber.innerHTML = '<option value="1">для 1 гостя</option>';
     resetMainMarker();
   })
 }

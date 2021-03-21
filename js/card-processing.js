@@ -46,128 +46,15 @@ export const timeSync = () => {
 export const guestLimit = () => {
   const roomInput = document.querySelector('#room_number');
   const guestsInput = document.querySelector('#capacity');
-  const guestsOptions = guestsInput.querySelectorAll('option');
-
-  if (roomInput.value === '1') {
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '3') {
-        guestsOptions[i].disabled = true;
-      }
-    }
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '2') {
-        guestsOptions[i].disabled = true;
-      }
-    }
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '1') {
-        guestsOptions[i].disabled = false;
-      }
-    }
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '0') {
-        guestsOptions[i].disabled = true;
-      }
-    }
-    guestsInput.value = '1';
-  }
+  guestsInput.innerHTML = '<option value="1">для 1 гостя</option>';
 
   roomInput.addEventListener('change', function () {
-
-    if (roomInput.value === '1') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      guestsInput.value = '1';
+    const roomCapacity = {
+      100: '<option value="0">не для гостей</option>',
+      1: '<option value="1">для 1 гостя</option>',
+      2: '<option value="2">для 2 гостей</option> <option value="1"> для 1 гостя</option>',
+      3: '<option value="3">для 3 гостей</option> <option value="2">для 2 гостей</option> <option value="1">для 1 гостя</option>',
     }
-
-    if (roomInput.value === '2') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      guestsInput.value = '2';
-    }
-
-    if (roomInput.value === '3') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      guestsInput.value = '3';
-    }
-    
-    if (roomInput.value === '100') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      guestsInput.value = '0';
-    }
+    guestsInput.innerHTML = roomCapacity[roomInput.value];
   })
 }
