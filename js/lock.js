@@ -1,8 +1,8 @@
 export const disableForm = () => {
-  let mainForm = document.querySelector('.ad-form');
-  let allMainFormFieldsets = mainForm.querySelectorAll('fieldset');
-  let mapForm = document.querySelector('.map__filters');
-  let allMapFormSelectors = mapForm.querySelectorAll('select');
+  const mainForm = document.querySelector('.ad-form');
+  const allMainFormFieldsets = mainForm.querySelectorAll('fieldset');
+  const mapForm = document.querySelector('.map__filters');
+  const allMapFormSelectors = mapForm.querySelectorAll('select');
 
   mainForm.classList.add('ad-form--disabled');
   mapForm.classList.add('map__filters--disabled');
@@ -19,10 +19,10 @@ export const disableForm = () => {
 }
 
 export const enableForm = () => {
-  let mainForm = document.querySelector('.ad-form');
-  let allMainFormFieldsets = mainForm.querySelectorAll('fieldset');
-  let mapForm = document.querySelector('.map__filters');
-  let allMapFormSelectors = mapForm.querySelectorAll('select');
+  const mainForm = document.querySelector('.ad-form');
+  const allMainFormFieldsets = mainForm.querySelectorAll('fieldset');
+  const mapForm = document.querySelector('.map__filters');
+  const allMapFormSelectors = mapForm.querySelectorAll('select');
 
   mainForm.classList.remove('ad-form--disabled');
   mapForm.classList.remove('map__filters--disabled');

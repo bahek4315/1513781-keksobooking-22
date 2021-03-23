@@ -1,7 +1,6 @@
-import {createPoints} from './map.js';
 import {createGetErrorMessage, createPostSuccessMessage, createPostErrorMessage} from './displaying-messages.js';
 
-export const receiveMarkers = () => {
+export const receiveMarkers = (onSuccess) => {
   fetch('https://22.javascript.pages.academy/keksobooking/data',
     {
       method: 'GET',
@@ -16,7 +15,7 @@ export const receiveMarkers = () => {
       }
     })
     .then ((markers) => {
-      createPoints(markers)
+      onSuccess(markers);
     })
     .catch(() => {
       createGetErrorMessage('Something went wrong2');

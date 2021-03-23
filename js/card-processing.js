@@ -9,7 +9,7 @@ export const setMinSum = () => {
   priceInput.max = 1000000;
   titleInput.minLength = 30;
   titleInput.maxLength = 100;
-  //без этого не работает валидация, если ничего не выбирать в теге <select>, те оставить "квартира" по дефолту, решил сделать такой код
+  
   if (buildingType.value === 'flat') {
     priceInput.min = 1000;
     priceInput.placeholder = '1000'
