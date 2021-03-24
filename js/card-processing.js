@@ -1,3 +1,6 @@
+import {resetMainMarker} from './map.js';
+import {sendForm} from './server-communication.js'
+
 export const setMinSum = () => {
   const buildingType = document.querySelector('#type');
   const priceInput = document.querySelector('#price');
@@ -6,7 +9,7 @@ export const setMinSum = () => {
   priceInput.max = 1000000;
   titleInput.minLength = 30;
   titleInput.maxLength = 100;
-  //без этого не работает валидация, если ничего не выбирать в теге <select>, те оставить "квартира" по дефолту, решил сделать такой код
+  
   if (buildingType.value === 'flat') {
     priceInput.min = 1000;
     priceInput.placeholder = '1000'
@@ -46,128 +49,47 @@ export const timeSync = () => {
 export const guestLimit = () => {
   const roomInput = document.querySelector('#room_number');
   const guestsInput = document.querySelector('#capacity');
-  const guestsOptions = guestsInput.querySelectorAll('option');
-
-  if (roomInput.value === '1') {
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '3') {
-        guestsOptions[i].disabled = true;
-      }
-    }
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '2') {
-        guestsOptions[i].disabled = true;
-      }
-    }
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '1') {
-        guestsOptions[i].disabled = false;
-      }
-    }
-    for (let i = 0; i < guestsOptions.length; i++) {
-      if (guestsOptions[i].value === '0') {
-        guestsOptions[i].disabled = true;
-      }
-    }
-    guestsInput.value = '1';
-  }
+  guestsInput.innerHTML = '<option value="1">для 1 гостя</option>';
 
   roomInput.addEventListener('change', function () {
+    const roomCapacity = {
+      100: '<option value="0">не для гостей</option>',
+      1: '<option value="1">для 1 гостя</option>',
+      2: '<option value="2">для 2 гостей</option> <option value="1"> для 1 гостя</option>',
+      3: '<option value="3">для 3 гостей</option> <option value="2">для 2 гостей</option> <option value="1">для 1 гостя</option>',
+    }
+    guestsInput.innerHTML = roomCapacity[roomInput.value];
+  })
+}
 
-    if (roomInput.value === '1') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      guestsInput.value = '1';
-    }
+export const formReset = () => {
+  const sendingForm = document.querySelector('.ad-form')
+  const titleDescription = sendingForm.querySelector('#title');
+  const apartmentType = sendingForm.querySelector('#type');
+  const priceInput = sendingForm.querySelector('#price');
+  const roomNumber = sendingForm.querySelector('#room_number');
+  const guestsNumber = sendingForm.querySelector('#capacity');
+  sendingForm.reset();
+  titleDescription.value = '';
+  apartmentType.value = 'flat';
+  priceInput.placeholder = '1000';
+  roomNumber.value = '1';
+  guestsNumber.innerHTML = '<option value="1">для 1 гостя</option>';
+}
 
-    if (roomInput.value === '2') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      guestsInput.value = '2';
-    }
+export const setSendButton = () => {
+  const submitForm = document.querySelector('.ad-form');
+  submitForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    sendForm(formData);
+  })
+}
 
-    if (roomInput.value === '3') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      guestsInput.value = '3';
-    }
-    
-    if (roomInput.value === '100') {
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '3') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '2') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '1') {
-          guestsOptions[i].disabled = true;
-        }
-      }
-      for (let i = 0; i < guestsOptions.length; i++) {
-        if (guestsOptions[i].value === '0') {
-          guestsOptions[i].disabled = false;
-        }
-      }
-      guestsInput.value = '0';
-    }
+export const setResetButton = () => {
+  document.querySelector('.ad-form__reset').addEventListener('click', (evt) => {
+    evt.preventDefault();
+    formReset();
+    resetMainMarker();
   })
 }

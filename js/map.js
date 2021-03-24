@@ -1,9 +1,12 @@
 import {enableForm} from './lock.js'
 import {createCard} from './card.js';
+import {receiveMarkers} from './server-communication.js';
+import {setEventListenerFilter, filterOffers} from './filter.js'
 
 const inputAddress = document.querySelector('#address');
 
 const map = L.map('map-canvas');
+const pinsLayer = L.layerGroup();
 const mainMarkerIcon = L.icon({
   iconUrl: 'img/main-pin.svg',
   iconSize: [50, 50],
@@ -26,6 +29,14 @@ export const createMap = () => {
 
   map.on('load', () => {
     enableForm();
+    receiveMarkers((markers) => {
+      createPoints(filterOffers(markers));
+
+      setEventListenerFilter(() => {
+        resetMarkers();
+        createPoints(filterOffers(markers));
+      })
+    });
   })
     .setView({
       lat: 35.681700,
@@ -82,21 +93,12 @@ export const resetMainMarker = () => {
 }
 
 export const createPoints = (tenOffers) => {
-
-  const insertUnit = document.querySelector('#map-canvas');
-
-  for (let i = 0; i < tenOffers.length; i++) {
-    insertUnit.appendChild(createCard(tenOffers[i]));
-  }
-
-  const articles = insertUnit.querySelectorAll('article');
-
   let points = [];
 
   for (let i = 0; i < tenOffers.length; i++) {
     points[i] =
       {
-        title: articles[i],
+        title: createCard(tenOffers[i]),
         lat: tenOffers[i].location.lat,
         lng: tenOffers[i].location.lng,
       }
@@ -117,7 +119,12 @@ export const createPoints = (tenOffers) => {
       {
         icon: markerIcon,
       });
-    marker.addTo(map);
+    marker.addTo(pinsLayer);
     marker.bindPopup(title);
   });
+  pinsLayer.addTo(map);
+}
+
+export const resetMarkers = () => {
+  pinsLayer.clearLayers();
 }
