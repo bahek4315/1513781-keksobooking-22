@@ -1,6 +1,8 @@
 export const createCard = (oneOffer) => {
   let template = document.querySelector('#card').content.querySelector('article');
   let element = template.cloneNode(true);
+  let features = oneOffer.offer.features;
+  let insertFeatures =   element.querySelector('.popup__features');
 
   element.querySelector('.popup__title').textContent = oneOffer.offer.title;
   element.querySelector('.popup__text--address').textContent = oneOffer.offer.address;
@@ -18,7 +20,6 @@ export const createCard = (oneOffer) => {
   if (oneOffer.offer.type === 'bungalow') {
     element.querySelector('.popup__type').textContent = 'Бунгало'
   }
-  //max ammount of rooms is 10, can increase if needed
   if (oneOffer.offer.rooms === 1) {
     element.querySelector('.popup__text--capacity').textContent = oneOffer.offer.rooms + ' комната';
   } else if (oneOffer.offer.rooms === 2 || oneOffer.offer.rooms === 3 || oneOffer.offer.rooms === 4) {
@@ -26,7 +27,6 @@ export const createCard = (oneOffer) => {
   } else {
     element.querySelector('.popup__text--capacity').textContent = oneOffer.offer.rooms + ' комнат';
   }
-  //max ammount of guests is 30, can increase if needed
   if (oneOffer.offer.guests === 1 || oneOffer.offer.guests === 21) {
     element.querySelector('.popup__text--capacity').textContent = element.querySelector('.popup__text--capacity').textContent + ' для ' + oneOffer.offer.guests + ' гостя'
   } else {
@@ -39,11 +39,7 @@ export const createCard = (oneOffer) => {
 
   element.querySelector('.popup__avatar').src = oneOffer.author.avatar;
 
-  //Delete all <li> in <ul> of features
   element.querySelector('.popup__features').innerHTML = '';
-
-  let features = oneOffer.offer.features;
-  let insertFeatures =   element.querySelector('.popup__features');
 
   for (let i = 0; i < oneOffer.offer.features.length; i++) {
     let oneFeature = document.createElement('li');
