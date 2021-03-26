@@ -1,3 +1,4 @@
+'use strict';
 import {resetMainMarker} from './map.js';
 import {sendForm} from './server-communication.js'
 

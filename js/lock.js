@@ -1,3 +1,4 @@
+'use strict';
 export const disableForm = () => {
   const mainForm = document.querySelector('.ad-form');
   const allMainFormFieldsets = mainForm.querySelectorAll('fieldset');

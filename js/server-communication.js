@@ -1,3 +1,4 @@
+'use strict';
 import {createGetErrorMessage, createPostSuccessMessage, createPostErrorMessage} from './displaying-messages.js';
 
 export const receiveMarkers = (onSuccess) => {

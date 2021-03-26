@@ -1,3 +1,4 @@
+'use strict';
 import {resetMainMarker} from './map.js';
 import {formReset} from './card-processing.js'
 

@@ -1,18 +1,10 @@
+'use strict';
 /* global _:readonly */
-
-export const filterOffersDefault = (offers) => {
-  return offers.slice(0, 10);
-}
-
 const filtersForm = document.querySelector('.map__filters');
 const filterType = filtersForm.querySelector('#housing-type');
 const filterPrice = filtersForm.querySelector('#housing-price');
 const filterRooms = filtersForm.querySelector('#housing-rooms');
 const filterGuests = filtersForm.querySelector('#housing-guests');
-
-export const setEventListenerFilter = (onFiltersChange) => {
-  filtersForm.addEventListener('change', _.debounce(onFiltersChange, 500));
-}
 
 const checkType = ({offer}) => {
   return filterType.value === offer.type || filterType.value === 'any';
@@ -58,6 +50,13 @@ const checkEveryFilter = (offer) => {
   });
 };
 
+export const filterOffersDefault = (offers) => {
+  return offers.slice(0, 10);
+}
+
+export const setEventListenerFilter = (onFiltersChange) => {
+  filtersForm.addEventListener('change', _.debounce(onFiltersChange, 500));
+}
 
 export const filterOffers = (offers) => {
   return offers.filter(checkEveryFilter).slice(0, 10);
