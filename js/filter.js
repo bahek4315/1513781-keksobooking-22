@@ -1,4 +1,3 @@
-'use strict';
 /* global _:readonly */
 const filtersForm = document.querySelector('.map__filters');
 const filterType = filtersForm.querySelector('#housing-type');

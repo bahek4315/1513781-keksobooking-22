@@ -1,4 +1,3 @@
-'use strict';
 import {enableForm} from './lock.js'
 import {createCard} from './card.js';
 import {receiveMarkers} from './server-communication.js';
