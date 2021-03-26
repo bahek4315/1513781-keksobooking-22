@@ -1,7 +1,7 @@
 import {enableForm} from './lock.js'
 import {createCard} from './card.js';
 import {receiveMarkers} from './server-communication.js';
-import {setEventListenerFilter, filterOffers} from './filter.js'
+import {setEventListenerFilter, filterOffers, filterOffersDefault} from './filter.js'
 
 const inputAddress = document.querySelector('#address');
 
@@ -30,7 +30,7 @@ export const createMap = () => {
   map.on('load', () => {
     enableForm();
     receiveMarkers((markers) => {
-      createPoints(filterOffers(markers));
+      createPoints(filterOffersDefault(markers));
 
       setEventListenerFilter(() => {
         resetMarkers();
