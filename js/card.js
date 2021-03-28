@@ -35,27 +35,40 @@ export const createCard = (oneOffer) => {
 
   element.querySelector('.popup__text--time').textContent = 'Заезд после ' + oneOffer.offer.checkin + ' выезд до ' + oneOffer.offer.checkout;
 
-  element.querySelector('.popup__description').textContent = oneOffer.offer.description;
+  if (!oneOffer.offer.description) {
+    element.querySelector('.popup__description').remove();
+  } else {
+    element.querySelector('.popup__description').textContent = oneOffer.offer.description;
+  }
+
 
   element.querySelector('.popup__avatar').src = oneOffer.author.avatar;
 
   element.querySelector('.popup__features').innerHTML = '';
 
-  for (let i = 0; i < oneOffer.offer.features.length; i++) {
-    let oneFeature = document.createElement('li');
-    oneFeature.classList.add('popup__feature');
-    oneFeature.classList.add('popup__feature--' + features[i]);
-    insertFeatures.appendChild(oneFeature);
+  if (oneOffer.offer.features.length === 0) {
+    element.querySelector('.popup__features').remove();
+  } else {
+    for (let i = 0; i < oneOffer.offer.features.length; i++) {
+      let oneFeature = document.createElement('li');
+      oneFeature.classList.add('popup__feature');
+      oneFeature.classList.add('popup__feature--' + features[i]);
+      insertFeatures.appendChild(oneFeature);
+    }
   }
 
   element.querySelector('.popup__photos').removeChild(element.querySelector('.popup__photos').querySelector('img'));
-  for (let i = 0; i < oneOffer.offer.photos.length; i++) {
-    let newPhoto = document.createElement('img');
-    newPhoto.classList.add('popup__photo');
-    newPhoto.src = oneOffer.offer.photos[i];
-    newPhoto.width = 45;
-    newPhoto.height = 40;
-    element.querySelector('.popup__photos').appendChild(newPhoto);
+  if (oneOffer.offer.photos.length === 0) {
+    element.querySelector('.popup__photos').remove();
+  } else {
+    for (let i = 0; i < oneOffer.offer.photos.length; i++) {
+      let newPhoto = document.createElement('img');
+      newPhoto.classList.add('popup__photo');
+      newPhoto.src = oneOffer.offer.photos[i];
+      newPhoto.width = 45;
+      newPhoto.height = 40;
+      element.querySelector('.popup__photos').appendChild(newPhoto);
+    }
   }
   return element;
 }

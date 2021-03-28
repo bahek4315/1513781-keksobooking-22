@@ -29,7 +29,8 @@ export const createPostSuccessMessage = () => {
     if (mainPage.lastChild.className === 'success'){
       mainPage.removeChild(mainPage.querySelector('.success'));
     }
-    document.removeEventListener('click', successClickListenerAdd)
+    document.removeEventListener('click', successClickListenerAdd);
+    document.removeEventListener('keydown', successEscListenerAdd);
   }
 
   const successEscListenerAdd = (evt) => {
@@ -38,7 +39,8 @@ export const createPostSuccessMessage = () => {
         mainPage.removeChild(mainPage.querySelector('.success'));
       }
     }
-    document.removeEventListener('click', successEscListenerAdd)
+    document.removeEventListener('keydown', successEscListenerAdd);
+    document.removeEventListener('click', successClickListenerAdd);
   }
 
   mainPage.appendChild(successDiv);
@@ -57,7 +59,8 @@ export const createPostErrorMessage = () => {
     if (mainPage.lastChild.className === 'error'){
       mainPage.removeChild(mainPage.querySelector('.error'));
     }
-    document.removeEventListener('click', errorClickListenerAdd)
+    document.removeEventListener('click', errorClickListenerAdd);
+    document.removeEventListener('keydown', errorEscListenerAdd);
   }
 
   const errorEscListenerAdd = (evt) => {
@@ -66,7 +69,8 @@ export const createPostErrorMessage = () => {
         mainPage.removeChild(mainPage.querySelector('.error'));
       }
     }
-    document.removeEventListener('click', errorEscListenerAdd)
+    document.removeEventListener('keydown', errorEscListenerAdd);
+    document.removeEventListener('click', errorClickListenerAdd);
   }
 
   mainPage.appendChild(errorDiv);

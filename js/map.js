@@ -65,7 +65,7 @@ export const createMap = () => {
   inputAddress.value = mainMarker.getLatLng().lat.toFixed(5) + ', ' + mainMarker.getLatLng().lng.toFixed(5);
   inputAddress.readOnly = true;
 
-  mainMarker.on('moveend', (evt) => {
+  mainMarker.on('move', (evt) => {
     inputAddress.value = evt.target.getLatLng().lat.toFixed(5) + ', ' + evt.target.getLatLng().lng.toFixed(5);
   });
 
@@ -87,7 +87,7 @@ export const resetMainMarker = () => {
   inputAddress.value = mainMarker.getLatLng().lat.toFixed(5) + ', ' + mainMarker.getLatLng().lng.toFixed(5);
   inputAddress.readOnly = true;
 
-  mainMarker.on('moveend', (evt) => {
+  mainMarker.on('move', (evt) => {
     inputAddress.value = evt.target.getLatLng().lat.toFixed(5) + ', ' + evt.target.getLatLng().lng.toFixed(5);
   });
 }

@@ -1,4 +1,5 @@
 /* global _:readonly */
+const MAX_COUNT = 10;
 const filtersForm = document.querySelector('.map__filters');
 const filterType = filtersForm.querySelector('#housing-type');
 const filterPrice = filtersForm.querySelector('#housing-price');
@@ -57,6 +58,19 @@ export const setEventListenerFilter = (onFiltersChange) => {
   filtersForm.addEventListener('change', _.debounce(onFiltersChange, 500));
 }
 
+
+
 export const filterOffers = (offers) => {
-  return offers.filter(checkEveryFilter).slice(0, 10);
+  const sortedOffers = [];
+  let j = 0;
+  for (let i = 0; i < offers.length; i++) {
+    if (checkEveryFilter(offers[i])) {
+      sortedOffers.push(offers[i]);
+      j++;
+      if (j === MAX_COUNT) {
+        break;
+      }
+    }
+  }
+  return sortedOffers;
 }

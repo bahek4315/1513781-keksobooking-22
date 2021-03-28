@@ -1,5 +1,7 @@
-import {resetMainMarker} from './map.js';
-import {sendForm} from './server-communication.js'
+import {resetMainMarker, resetMarkers} from './map.js';
+import {receiveMarkers, sendForm} from './server-communication.js';
+import {createPoints} from './map.js';
+import {filterOffersDefault} from './filter.js'
 
 export const setMinSum = () => {
   const buildingType = document.querySelector('#type');
@@ -14,7 +16,7 @@ export const setMinSum = () => {
     priceInput.min = 1000;
     priceInput.placeholder = '1000'
   }
-  buildingType.addEventListener('change', function () {
+  buildingType.addEventListener('change', () => {
     if (buildingType.value === 'bungalow') {
       priceInput.min = 0;
       priceInput.placeholder = '0'
@@ -35,23 +37,23 @@ export const setMinSum = () => {
 
 }
 
-export const timeSync = () => {
+export const synchronizeTime = () => {
   const timeIn = document.querySelector('#timein');
   const timeOut = document.querySelector('#timeout');
-  timeIn.addEventListener('change', function (){
+  timeIn.addEventListener('change', () => {
     timeOut.value = timeIn.value;
   })
-  timeOut.addEventListener('change', function (){
+  timeOut.addEventListener('change', () => {
     timeIn.value = timeOut.value;
   })
 }
 
-export const guestLimit = () => {
+export const validateGuestsCapacity = () => {
   const roomInput = document.querySelector('#room_number');
   const guestsInput = document.querySelector('#capacity');
   guestsInput.innerHTML = '<option value="1">для 1 гостя</option>';
 
-  roomInput.addEventListener('change', function () {
+  roomInput.addEventListener('change', () => {
     const roomCapacity = {
       100: '<option value="0">не для гостей</option>',
       1: '<option value="1">для 1 гостя</option>',
@@ -63,13 +65,19 @@ export const guestLimit = () => {
 }
 
 export const formReset = () => {
-  const sendingForm = document.querySelector('.ad-form')
+  const sendingForm = document.querySelector('.ad-form');
+  const mapFilters = document.querySelector('.map__filters');
   const titleDescription = sendingForm.querySelector('#title');
   const apartmentType = sendingForm.querySelector('#type');
   const priceInput = sendingForm.querySelector('#price');
   const roomNumber = sendingForm.querySelector('#room_number');
   const guestsNumber = sendingForm.querySelector('#capacity');
   sendingForm.reset();
+  mapFilters.reset();
+  resetMarkers();
+  receiveMarkers((markers) => {
+    createPoints(filterOffersDefault(markers));
+  });
   titleDescription.value = '';
   apartmentType.value = 'flat';
   priceInput.placeholder = '1000';
